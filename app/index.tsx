@@ -35,10 +35,9 @@ const Index = () => {
   };
 
   const handleDelete = (index: Int32) => {
-    var temp = undoneTasks;
+    var temp = [...undoneTasks];
     temp.splice(index, 1);
 
-    console.log("temp", temp);
     setUndoneTasks(temp);
   };
 
@@ -69,6 +68,11 @@ const Index = () => {
           <View>
             <Text style={styles.subTitle}>Not Done Yet</Text>
           </View>
+          {undoneTasks.length == 0 ? (
+            <Text style={styles.noTasks}>No Task</Text>
+          ) : (
+            <></>
+          )}
           {undoneTasks.map((item, index) => (
             <View style={styles.undoneList}>
               <View key={index} style={styles.cardNotDoneContainer}>
@@ -158,6 +162,10 @@ const styles = StyleSheet.create({
     fontSize: 25,
     fontWeight: "bold",
     color: "#FEF9D9",
+  },
+  noTasks: {
+    padding: 10,
+    
   },
   undoneList: {
     flex: 1,
